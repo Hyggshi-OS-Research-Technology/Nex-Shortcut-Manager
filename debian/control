@@ -1,0 +1,32 @@
+Source: shortcut-manager
+Section: utils
+Priority: optional
+Maintainer: hyggshi <hyggshi@users.noreply.github.com>
+Build-Depends:
+ debhelper-compat (= 13),
+ cmake (>= 3.16),
+ ninja-build,
+ qt6-base-dev,
+ qt6-base-dev-tools,
+ libgl-dev,
+ pkg-config
+Standards-Version: 4.6.2
+Homepage: https://github.com/hyggshi/Shortcut-Manager
+Rules-Requires-Root: no
+
+Package: shortcut-manager
+Architecture: any
+Depends:
+ ${shlibs:Depends},
+ ${misc:Depends}
+Description: Nex Shortcut Manager (NSM) - Linux Desktop Shortcut Manager
+ A powerful, responsive Qt6 desktop application to scan, create,
+ edit, validate, pin and manage .desktop shortcuts on Linux.
+ Features include:
+  * Automatic scanning of system & user applications
+  * One-click Add/Remove shortcuts from Desktop
+  * In-place shortcut editing (Name, Exec, Icon, Categories)
+  * Visual Icon Picker with search and custom icon files
+  * File and Folder shortcut generator
+  * Validator for Freedesktop Desktop Entry specifications
+  * Pinned favorites and JSON Import/Export backup

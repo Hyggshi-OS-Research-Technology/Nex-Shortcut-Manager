@@ -1,0 +1,11 @@
+shortcut-manager (1.0.0-1) unstable; urgency=medium
+
+  * Initial official release of Shortcut Manager (Qt6 + C++17).
+  * Feature: Automatic application scanning.
+  * Feature: Desktop shortcut management (Add, Remove, Refresh).
+  * Feature: Full Property Editor & Visual Icon Picker Dialog.
+  * Feature: Custom, File, and Folder shortcut creation.
+  * Feature: Validator, Pinned apps, and JSON Import/Export.
+  * Feature: System Info & About Dialog.
+
+ -- hyggshi <hyggshi@users.noreply.github.com>  Fri, 21 Aug 2026 11:15:00 +0700

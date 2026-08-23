@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=Nex Shortcut Manager (NSM)
+GenericName=Desktop Shortcut Manager (NSM)
+Comment=Manage, create, and customize Linux desktop shortcuts
+Exec=ShortcutManager
+Icon=preferences-desktop
+Categories=Utility;Settings;System;
+Terminal=false
+StartupNotify=true

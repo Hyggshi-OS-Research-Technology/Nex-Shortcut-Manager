@@ -1,0 +1,70 @@
+# Build directories
+build/
+bin/
+out/
+obj-*/
+
+# CMake generated files
+CMakeCache.txt
+CMakeFiles/
+CMakeScripts/
+Testing/
+Makefile
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+CTestTestfile.cmake
+_CPack_Packages/
+CPackConfig.cmake
+CPackSourceConfig.cmake
+.ninja_*
+*.ninja
+
+# Qt generated files
+*_autogen/
+qrc_*.cpp
+ui_*.h
+moc_*.cpp
+*.moc
+.qmake.stash
+*.qmlc
+*.jsc
+
+# Compiled Object files & Binaries
+*.o
+*.obj
+*.so
+*.so.*
+*.a
+*.lib
+*.dll
+*.dylib
+*.d
+*.debug
+ShortcutManager
+
+# Debian packaging artifacts
+debian/.debhelper/
+debian/debhelper-build-stamp
+debian/files
+debian/*.substvars
+debian/shortcut-manager/
+debian/shortcut-manager-dbgsym/
+debian/tmp/
+*.buildinfo
+*.changes
+*.deb
+*.ddeb
+
+# IDE & Editor files
+.vscode/
+.idea/
+*.user
+*.user.*
+*.suo
+*.swp
+*.swo
+*~
+.DS_Store
+.clangd/
+.cache/
