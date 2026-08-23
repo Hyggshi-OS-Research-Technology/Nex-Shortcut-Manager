@@ -344,6 +344,11 @@ jobs:
 
       # --------------------------------------------------------
       # Import GPG signing key
+      #
+      # IMPORTANT FIX: we no longer trust a hardcoded fingerprint.
+      # After import, we read the ACTUAL fingerprint of the key that
+      # was just imported and export it as $GITHUB_ENV so every
+      # later step uses the real key, not a stale hardcoded string.
       # --------------------------------------------------------
       - name: Import GPG signing key
         env:
@@ -362,6 +367,20 @@ jobs:
           echo "Imported secret keys:"
           gpg --list-secret-keys --keyid-format LONG
 
+          # Extract the fingerprint of the (first) imported secret key.
+          KEY_ID="$(gpg --list-secret-keys --keyid-format LONG --with-colons \
+            | awk -F: '/^fpr:/ {print $10; exit}')"
+
+          if [ -z "$KEY_ID" ]; then
+            echo "ERROR: Could not determine fingerprint of imported key."
+            echo "This usually means GPG_PRIVATE_KEY secret contains a PUBLIC key,"
+            echo "an empty value, or a malformed/truncated key block."
+            exit 1
+          fi
+
+          echo "Resolved KEY_ID: $KEY_ID"
+          echo "KEY_ID=$KEY_ID" >> "$GITHUB_ENV"
+
       # --------------------------------------------------------
       # Verify GPG signing key
       # --------------------------------------------------------
@@ -369,7 +388,10 @@ jobs:
         run: |
           set -e
 
-          KEY_ID="33F527C35036B510FFD10A1078517E50002AC314"
+          if [ -z "$KEY_ID" ]; then
+            echo "ERROR: KEY_ID is not set (import step must run first)."
+            exit 1
+          fi
 
           if ! gpg --list-secret-keys "$KEY_ID" >/dev/null 2>&1; then
             echo "ERROR: Signing key was not imported."
@@ -460,7 +482,10 @@ jobs:
         run: |
           set -e
 
-          KEY_ID="33F527C35036B510FFD10A1078517E50002AC314"
+          if [ -z "$KEY_ID" ]; then
+            echo "ERROR: KEY_ID is not set (import step must run first)."
+            exit 1
+          fi
 
           if [ -z "$GPG_PASSPHRASE" ]; then
             echo "ERROR: GPG_PASSPHRASE secret is empty."
